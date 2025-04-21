@@ -1,4 +1,3 @@
-
 import { AUTH_COOKIE } from "@/features/auth/constants";
 import { createAdminClient } from "@/lib/appwrite";
 import { cookies } from "next/headers";
@@ -21,5 +20,5 @@ export async function GET(request: NextRequest) {
 		secure: true,
 	});
 
-	return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP}/`);
+	return NextResponse.redirect(`${request.nextUrl.origin}/`);
 }
