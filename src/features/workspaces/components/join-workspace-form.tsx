@@ -28,7 +28,7 @@ export const JoinWorkspaceForm = ({
 	const workspaceId = useWorkspaceId();
 	const inviteCode = useInviteCode();
 	const { mutate, isPending } = useJoinWorkspace();
-    console.log("Joining with:", { workspaceId, inviteCode });
+    // console.log("Joining with:", { workspaceId, inviteCode });
 
 	const onSubmit = () => {
 		mutate(
