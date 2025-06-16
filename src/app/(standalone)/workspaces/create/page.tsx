@@ -1,5 +1,5 @@
 import { getCurrent } from "@/features/auth/queries";
-import { CreateWorkspaceForm } from "@/features/workspaces/components/create-workspace-form";
+import { WorkspaceOnboardingForm } from "@/features/workspaces/components/workspace-onboarding-form";
 import { redirect } from "next/navigation";
 
 const WorkspaceCreatePage = async () => {
@@ -8,7 +8,7 @@ const WorkspaceCreatePage = async () => {
 
 	return (
 		<div className="w-full md:max-w-lg lg:max-w-xl">
-			<CreateWorkspaceForm />
+			<WorkspaceOnboardingForm />
 		</div>
 	);
 };
