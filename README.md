@@ -1,4 +1,4 @@
-# 🚀 Jeera – A Modern Jira Clone for Project Management
+# Jeera – A Modern Jira Clone for Project Management
 
 A sleek, full-stack task and project management platform inspired by Jira, featuring AI-powered suggestions, multiple task views, and real-time collaboration.
 
@@ -9,20 +9,21 @@ A sleek, full-stack task and project management platform inspired by Jira, featu
 
 ---
 
-## ✨ Features
+## Features
 
 - 🧠 **AI Integration** – Generate project descriptions & task suggestions (Cohere)
 - 📁 **Multi-Workspace Support** – Manage multiple organizations
 - 📂 **Projects & Tasks** – Full CRUD with status, assignees, due dates
 - 📊 **Multiple Views** – Kanban, Table, and Calendar
 - 👥 **Role-Based Access Control** – Admin/Member permissions
+- 🌙 **Light & Dark Theme Support** – Light and Dark mode enabled
 - 🔍 **Smart Filtering & Bulk Edits**
 - 📈 **Dashboard Analytics** – Visual progress and completion tracking
 - 🎨 **Responsive UI** – Mobile-optimized and theme-switching support
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -39,7 +40,7 @@ A sleek, full-stack task and project management platform inspired by Jira, featu
 
 ---
 
-## ⚙️ Getting Started
+## Getting Started
 
 ### 1. Clone & Install
 
@@ -83,7 +84,7 @@ Then open your browser and navigate to:
 
 ---
 
-## 🧱 Project Structure
+## Project Structure
 
 ```bash
 src/
@@ -99,67 +100,32 @@ src/
 
 ---
 
-## 🤖 AI Features
+## AI Features
 
-- 🧠 **Smart Project Description** – Enter project name, get bullet-point descriptions
-- 📌 **Auto Task Suggestions** – Create relevant tasks based on project context
-- ✍️ **Auto Task Descriptions** – Generate brief task explanations using AI
-
----
-
-## 📸 Preview
-
-> *(Insert a screenshot or animated GIF showcasing:)*  
-> - 🟦 Kanban view  
-> - 💡 AI-generated description form  
-> - 📊 Analytics dashboard
+- **Smart Project Description** – Enter project name, get bullet-point descriptions
+- **Auto Task Suggestions** – Create relevant tasks based on project context
+- **Auto Task Descriptions** – Generate brief task explanations using AI
 
 ---
 
-## 📦 Optimizations
+## Optimizations
 
 ### Frontend
 
-- ✅ Code Splitting via App Router
-- 💤 Lazy-loaded heavy components
-- 🖼️ Optimized Images with Next.js
-- 📦 React Query caching & deduplication
+- Code Splitting via App Router
+- Lazy-loaded heavy components
+- Optimized Images with Next.js
+- React Query caching & deduplication
 
 ### Backend
 
-- ✅ Zod Validation
-- 🧩 Hono Middleware for clean API architecture
-- 🚧 Centralized error handling
+- Zod Validation
+- Hono Middleware for clean API architecture
+- Centralized error handling
 
 ### AI Usage
 
-- 🔁 Minimal token cost via targeted prompts
-- 🧠 Context-aware suggestions
-- 🔧 Fallback responses if AI fails
+- Minimal token cost via targeted prompts
+- Context-aware suggestions
+- Fallback responses if AI fails
 
----
-
-## 🧑‍💻 Author
-
-**Japsimar Singh**  
-🔗 [LinkedIn](https://linkedin.com/in/your-link) • 🌐 [Portfolio](https://your-portfolio.com)
-
----
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 💡 Suggestions / Improvements?
-
-Let me know if you'd like:
-- 🌙 Dark mode preview in the README  
-- ⚙️ `Deploy to Vercel` button  
-- 🧪 GitHub Actions CI badge  
-- 🧾 Sample data setup guide for Appwrite  
-
----
-
-🚀 Happy building!
