@@ -52,15 +52,20 @@ export function DataTable<TData, TValue>({
 
 	return (
 		<div>
-			
 			<div className="rounded-md border">
 				<Table>
-					<TableHeader>
+					<TableHeader className="border-0">
 						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id}>
+							<TableRow
+								key={headerGroup.id}
+								className="hover:bg-transparent border-0 [&_tr]:border-0"
+							>
 								{headerGroup.headers.map((header) => {
 									return (
-										<TableHead key={header.id}>
+										<TableHead
+											key={header.id}
+											className="border-0 outline-none"
+										>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -105,18 +110,18 @@ export function DataTable<TData, TValue>({
 			</div>
 			<div className="flex items-center justify-end space-x-2 py-4">
 				<Button
-					variant="secondary"
+					variant="outline"
 					size="sm"
 					onClick={() => table.previousPage()}
-					disabled={!table.getCanPreviousPage()}
+					className="border-neutral-300 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-200"
 				>
 					Previous
 				</Button>
 				<Button
-					variant="secondary"
+					variant="outline"
 					size="sm"
 					onClick={() => table.nextPage()}
-					disabled={!table.getCanNextPage()}
+					className="border-neutral-300 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-200"
 				>
 					Next
 				</Button>

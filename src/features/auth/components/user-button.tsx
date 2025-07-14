@@ -18,8 +18,8 @@ export const UserButton = () => {
 
 	if (isLoading) {
 		return (
-			<div className="size-10 rounded-full flex items-center justify-center bg-neutral-200 border border-neutral-300">
-				<Loader className="size-4 animate-spin text-muted-foreground" />
+			<div className="size-8 sm:size-10 rounded-full flex items-center justify-center bg-neutral-200 border border-neutral-300">
+				<Loader className="size-3 sm:size-4 animate-spin text-muted-foreground" />
 			</div>
 		);
 	}
@@ -36,8 +36,8 @@ export const UserButton = () => {
 	return (
 		<DropdownMenu modal={false}>
 			<DropdownMenuTrigger className="outline-none relative">
-				<Avatar className="size-10 hover:opacity-75 transition border border-neutral-300">
-					<AvatarFallback className="bg-neutral-200 font-medium text-neutral-500 flex items-center justify-center">
+				<Avatar className="size-8 sm:size-10 hover:opacity-75 transition border border-neutral-300 dark:border-neutral-600">
+					<AvatarFallback className="bg-neutral-200 font-medium text-neutral-500 dark:bg-neutral-700 dark:text-neutral-100 flex items-center justify-center text-sm sm:text-base">
 						{avatarFallback}
 					</AvatarFallback>
 				</Avatar>

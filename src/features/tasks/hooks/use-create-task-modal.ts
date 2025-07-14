@@ -1,4 +1,4 @@
-import { useQueryState, parseAsBoolean } from "nuqs";
+import { useQueryState, parseAsBoolean, parseAsString } from "nuqs";
 
 export const useCreateTaskModal = () => {
 	const [isOpen, setIsOpen] = useQueryState(
@@ -6,14 +6,28 @@ export const useCreateTaskModal = () => {
 		parseAsBoolean.withDefault(false).withOptions({ clearOnDefault: true })
 	);
 
-    const open = () => setIsOpen(true);
-    const close = () => setIsOpen(false);
+	const [prefillName, setPrefillName] = useQueryState(
+		"task-name",
+		parseAsString.withDefault("").withOptions({ clearOnDefault: true })
+	);
 
-    return {
-        isOpen,
-        open,
-        close,      
-        setIsOpen,
-    };
+	const open = (options?: { prefillName?: string }) => {
+		if (options?.prefillName) {
+			setPrefillName(options.prefillName);
+		}
+		setIsOpen(true);
+	};
 
+	const close = () => {
+		setIsOpen(false);
+		setPrefillName("");
+	};
+
+	return {
+		isOpen,
+		prefillName,
+		open,
+		close,
+		setIsOpen,
+	};
 };

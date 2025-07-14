@@ -1,36 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Jeera – A Modern Jira Clone for Project Management
 
-## Getting Started
+A sleek, full-stack task and project management platform inspired by Jira, featuring AI-powered suggestions, multiple task views, and real-time collaboration.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-teal?style=flat-square&logo=tailwind-css)
+![Appwrite](https://img.shields.io/badge/Appwrite-14-pink?style=flat-square&logo=appwrite)
+
+---
+
+## ✨ Features
+
+- 🧠 **AI Integration** – Generate project descriptions & task suggestions (Cohere)
+- 📁 **Multi-Workspace Support** – Manage multiple organizations
+- 📂 **Projects & Tasks** – Full CRUD with status, assignees, due dates
+- 📊 **Multiple Views** – Kanban, Table, and Calendar
+- 👥 **Role-Based Access Control** – Admin/Member permissions
+- 🔍 **Smart Filtering & Bulk Edits**
+- 📈 **Dashboard Analytics** – Visual progress and completion tracking
+- 🎨 **Responsive UI** – Mobile-optimized and theme-switching support
+
+---
+
+## ⚙️ Tech Stack
+
+### Frontend
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS + ShadcnUI
+- **State & Forms**: React Hook Form, Zod, TanStack Query
+
+### Backend
+
+- **API**: Hono (Edge-ready lightweight framework)
+- **Database & Auth**: Appwrite (NoSQL + Session Auth)
+- **AI**: Cohere API (Project & Task AI descriptions)
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/yourusername/jeera.git
+cd jeera
+npm install  # or npm/yarn/bun
+```
+### 2. Configure Environment Variables
+
+Create a `.env.local` file in the root of your project:
+
+```env
+NEXT_PUBLIC_APP_URL=
+
+NEXT_PUBLIC_APPWRITE_ENDPOINT=
+NEXT_PUBLIC_APPWRITE_PROJECT=
+
+NEXT_PUBLIC_APPWRITE_DATABASE_ID=
+NEXT_PUBLIC_APPWRITE_WORKSPACES_ID=
+NEXT_PUBLIC_APPWRITE_MEMBERS_ID=
+NEXT_PUBLIC_APPWRITE_PROJECTS_ID=
+NEXT_PUBLIC_APPWRITE_TASKS_ID=
+NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID=
+
+NEXT_APPWRITE_KEY=
+
+COHERE_API_KEY=
+```
+
+### 3. Run Locally
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open your browser and navigate to:  
+[http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧱 Project Structure
 
-## Learn More
+```bash
+src/
+├── app/                    # Next.js App Router
+│   ├── (auth)/             # Authentication pages
+│   ├── (dashboard)/        # Main application
+│   ├── api/                # API routes using Hono
+├── components/             # UI components (Radix + custom)
+├── features/               # Feature-based modules (tasks, projects, workspaces)
+├── hooks/                  # Reusable React hooks
+├── lib/                    # Utility functions, client config, etc.
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🤖 AI Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🧠 **Smart Project Description** – Enter project name, get bullet-point descriptions
+- 📌 **Auto Task Suggestions** – Create relevant tasks based on project context
+- ✍️ **Auto Task Descriptions** – Generate brief task explanations using AI
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📸 Preview
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> *(Insert a screenshot or animated GIF showcasing:)*  
+> - 🟦 Kanban view  
+> - 💡 AI-generated description form  
+> - 📊 Analytics dashboard
+
+---
+
+## 📦 Optimizations
+
+### Frontend
+
+- ✅ Code Splitting via App Router
+- 💤 Lazy-loaded heavy components
+- 🖼️ Optimized Images with Next.js
+- 📦 React Query caching & deduplication
+
+### Backend
+
+- ✅ Zod Validation
+- 🧩 Hono Middleware for clean API architecture
+- 🚧 Centralized error handling
+
+### AI Usage
+
+- 🔁 Minimal token cost via targeted prompts
+- 🧠 Context-aware suggestions
+- 🔧 Fallback responses if AI fails
+
+---
+
+## 🧑‍💻 Author
+
+**Japsimar Singh**  
+🔗 [LinkedIn](https://linkedin.com/in/your-link) • 🌐 [Portfolio](https://your-portfolio.com)
+
+---
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 💡 Suggestions / Improvements?
+
+Let me know if you'd like:
+- 🌙 Dark mode preview in the README  
+- ⚙️ `Deploy to Vercel` button  
+- 🧪 GitHub Actions CI badge  
+- 🧾 Sample data setup guide for Appwrite  
+
+---
+
+🚀 Happy building!

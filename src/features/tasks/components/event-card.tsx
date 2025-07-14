@@ -39,19 +39,21 @@ export const EventCard = ({
 	};
 
 	return (
-		<div className="px-2">
+		<div className="px-2 pb-1">
 			<div
 				onClick={onClick}
 				className={cn(
-					"p-1.5 text-xs bg-white text-primary border rounded-md border-l-4 flex flex-col gap-y-1.5 cursor-pointer hover:opacity-75 transition",
+					"p-1.5 text-xs bg-muted dark:bg-neutral-800 text-primary dark:text-neutral-100 border rounded-md border-l-4 flex flex-col gap-y-1.5 cursor-pointer hover:opacity-75 transition",
 					statusColorMap[status]
 				)}
 			>
-				<p>{title}</p>
+				<p className="truncate" title={title}>
+					{title}
+				</p>
 				<div className="flex items-center gap-x-1">
-					<MemberAvatar name={assignee?.name} />
-					<div className="size-1 rounded-full bg-neutral-300" />
-					<ProjectAvatar name={project?.name} image={project.imageUrl} />
+					<MemberAvatar name={assignee?.name} className="hidden sm:block" />
+					<div className="size-1 rounded-full bg-neutral-300 dark:bg-neutral-600" />
+					<ProjectAvatar name={project?.name} image={project.imageUrl} className="hidden sm:block" />
 				</div>
 			</div>
 		</div>

@@ -11,13 +11,16 @@ interface DottedSeparatorProps {
 
 export const DottedSeparator = ({
 	className,
-	color = "#d4d4d8",
+	color,
 	height = "2px",
 	dotSize = "2px",
 	gapSize = "6px",
 	direction = "horizontal",
 }: DottedSeparatorProps) => {
 	const isHorizontal = direction === "horizontal";
+
+	// Use CSS variable for color that supports dark theme, fallback to provided color or default
+	const separatorColor = color || "hsl(var(--border))";
 
 	return (
 		<div
@@ -33,7 +36,7 @@ export const DottedSeparator = ({
 				style={{
 					width: isHorizontal ? "100%" : height,
 					height: isHorizontal ? height : "100%",
-					backgroundImage: `radial-gradient(circle, ${color} 25%, transparent 25%)`,
+					backgroundImage: `radial-gradient(circle, ${separatorColor} 35%, transparent 25%)`,
 					backgroundSize: isHorizontal
 						? `${parseInt(dotSize) + parseInt(gapSize)}px ${height}`
 						: `${height} ${parseInt(dotSize) + parseInt(gapSize)}px`,

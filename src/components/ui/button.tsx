@@ -5,22 +5,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:bg-neutral-100 disabled:from-neutral-100 disabled:to-neutral-100 disabled:text-muted-foreground border border-neutral-200 shadow-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:bg-neutral-100 disabled:from-neutral-100 disabled:to-neutral-100 disabled:text-muted-foreground dark:disabled:bg-neutral-800 dark:disabled:from-neutral-800 dark:disabled:to-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 	{
 		variants: {
 			variant: {
 				primary:
-					"bg-gradient-to-b from-blue-500 to-blue-700 text-primary-foreground hover:from-blue-700 hover:to-blue-700",
+					"bg-gradient-to-b from-blue-500 to-blue-700 text-white hover:from-blue-700 hover:to-blue-700",
 				destructive:
 					"bg-gradient-to-b from-red-400 to-red-700 text-destructive-foreground hover:from-red-700 hover:to-red-700",
 				outline:
 					"border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-				secondary: "bg-white text-black hover:bg-neutral-100",
+				secondary:
+					"bg-white dark:bg-neutral-700 text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800",
 				ghost:
 					"border-transparent shadow-none hover:bg-accent hover:text-accent-foreground",
-				muted: "bg-neutral-200 text-neutral-700 hover:bg-neutral-200/80",
+				muted:
+					"bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/80 dark:hover:bg-neutral-700/80",
 				tertiary:
-					"bg-blue-100 text-blue-600 border-transparent hover:bg-blue-200 shadow-none",
+					"bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-transparent hover:bg-blue-200 dark:hover:bg-blue-900/50 shadow-none",
 			},
 			size: {
 				default: "h-10 px-4 py-2",

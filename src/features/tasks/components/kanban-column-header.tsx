@@ -42,14 +42,14 @@ export const KanbanColumnHeader = ({
 
 	return (
 		<div className="px-2 py-1.5 flex items-center justify-between">
-			<div className="flex items-center gap-x-2">
+			<div className="flex items-center justify-between gap-x-2">
 				{icon}
 				<h2 className="text-sm font-medium">{snakeCaseToTitleCase(board)}</h2>
-				<div className="size-5 flex items-center justify-center rounded-md bg-neutral-200 text-xs font-medium text-neutral-700">
+				<div className="size-5 flex items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-800 text-xs font-medium text-neutral-700 dark:text-neutral-200">
 					{taskCount}
 				</div>
 			</div>
-			<Button onClick={open} variant="ghost" size="icon" className="szie-5">
+			<Button onClick={() => open()} variant="ghost" size="icon" className="size-5 border-0 hover:bg-transparent">
 				<PlusIcon className="size-4 text-neutral-500" />
 			</Button>
 		</div>

@@ -74,10 +74,10 @@ export const TaskList = ({ data, total }: TaskListProps) => {
 
 	return (
 		<div className="flex flex-col gap-y-4 col-span-1">
-			<div className="bg-muted rounded-lg p-4">
+			<div className="bg-muted dark:bg-neutral-800 rounded-lg p-4">
 				<div className="flex items-center justify-between">
 					<p className="text-lg font-semibold">Tasks ({total})</p>
-					<Button size="icon" onClick={createTask} variant={"muted"}>
+					<Button size="icon" onClick={() => createTask()} variant={"muted"}>
 						<PlusIcon className="size-4 text-neutral-400" />
 					</Button>
 				</div>
@@ -89,12 +89,12 @@ export const TaskList = ({ data, total }: TaskListProps) => {
 								<Card className="shadow-none rounded-lg hover:opacity-75 transition">
 									<CardContent className="p-4">
 										<p className="text-lg font-medium truncate">{task.name}</p>
-										<div className="flex items-center gap-x-2">
-											<p>{task.project?.name}</p>
-											<div className="size-1 rounded-full bg-neutral-300" />
-											<div className="text-sm text-muted-foreground flex items-center">
-												<CalendarIcon className="size-3 mr-1" />
-												<span className="truncate">
+										<div className="flex items-center gap-x-2 min-w-0">
+											<p className="truncate max-w-24">{task.project?.name}</p>
+											<div className="size-1 rounded-full bg-neutral-300 dark:bg-neutral-600 flex-shrink-0" />
+											<div className="text-sm text-muted-foreground flex items-center min-w-0">
+												<CalendarIcon className="size-3 mr-1 flex-shrink-0" />
+												<span className="truncate max-w-20">
 													{formatDistanceToNow(new Date(task.dueDate))}
 												</span>
 											</div>
@@ -128,7 +128,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
 
 	return (
 		<div className="flex flex-col gap-y-4 col-span-1">
-			<div className="bg-white border rounded-lg p-4">
+			<div className="bg-white dark:bg-neutral-800 border dark:border-neutral-700 rounded-lg p-4">
 				<div className="flex items-center justify-between">
 					<p className="text-lg font-semibold">Projects ({total})</p>
 					<Button size="icon" onClick={createProject} variant={"secondary"}>
@@ -140,7 +140,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
 					{data.map((project) => (
 						<li key={project.$id}>
 							<Link href={`/workspaces/${workspaceId}/projects/${project.$id}`}>
-								<Card className="shadow-none rounded-lg hover:opacity-75 transition">
+								<Card className="shadow-none rounded-lg hover:opacity-70 transition">
 									<CardContent className="p-4 flex items-center gap-x-2.5">
 										<ProjectAvatar
 											className="size-12"
@@ -175,7 +175,7 @@ export const MemberList = ({ data, total }: MemberListProps) => {
 
 	return (
 		<div className="flex flex-col gap-y-4 col-span-1">
-			<div className="bg-white border rounded-lg p-4">
+			<div className="bg-white dark:bg-neutral-800 border dark:border-neutral-700 rounded-lg p-4">
 				<div className="flex items-center justify-between">
 					<p className="text-lg font-semibold">Members ({total})</p>
 					<Button asChild size="icon" variant={"secondary"}>
@@ -191,11 +191,11 @@ export const MemberList = ({ data, total }: MemberListProps) => {
 							<Card className="shadow-none rounded-lg overflow-hidden">
 								<CardContent className="p-3 flex flex-col items-center gap-x-2.5">
 									<MemberAvatar className="size-12" name={member.name} />
-									<div className="flex flex-col items-center overflow-hidden">
-										<p className="text-lg font-medium line-clamp-1">
+									<div className="flex flex-col items-center overflow-hidden w-full">
+										<p className="text-lg font-medium truncate max-w-24">
 											{member.name}
 										</p>
-										<p className="text-sm text-muted-foreground line-clamp-1">
+										<p className="text-sm text-muted-foreground truncate max-w-24">
 											{member.email}
 										</p>
 									</div>

@@ -35,11 +35,13 @@ export const WorkspaceSwitcher = () => {
 	return (
 		<div className="flex flex-col gap-y-2">
 			<div className="flex items-center justify-between">
-				<p className="text-xs uppercase text-neutral-500">Workspaces</p>
+				<p className="text-xs uppercase text-neutral-500 dark:text-neutral-400">
+					Workspaces
+				</p>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<button
-							className="size-5 text-neutral-500 cursor-pointer hover:opacity-75 transition"
+							className="size-5 text-neutral-500 dark:text-neutral-400 cursor-pointer hover:opacity-75 transition"
 							title="Add workspace"
 							aria-label="Add workspace"
 						>
@@ -57,18 +59,19 @@ export const WorkspaceSwitcher = () => {
 				</DropdownMenu>
 			</div>
 			<Select onValueChange={onSelect} value={workspaceId}>
-				<SelectTrigger className="w-full bg-neutral-200 font-medium p-1">
-					<SelectValue placeholder="Select a workspace" />
+				<SelectTrigger className="w-full bg-neutral-200 dark:bg-neutral-700 font-medium p-1 max-w-full">
+					<SelectValue placeholder="Select a workspace" className="truncate" />
 				</SelectTrigger>
 				<SelectContent>
 					{workspaces?.documents.map((workspace) => (
 						<SelectItem key={workspace.$id} value={workspace.$id}>
-							<div className="flex justify-start items-center gap-3 font-medium">
+							<div className="flex justify-start items-center gap-3 font-medium w-full">
 								<WorkspaceAvatar
 									name={workspace.name}
 									image={workspace.imageUrl}
+									className="size-7"
 								/>
-								<span className="truncate">{workspace.name}</span>
+								<span className="truncate max-w-32">{workspace.name}</span>
 							</div>
 						</SelectItem>
 					))}

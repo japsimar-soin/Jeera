@@ -17,13 +17,14 @@ import { DottedSeparator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCreateProject } from "../api/use-create-project";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ImageIcon, X } from "lucide-react";
+import { ImageIcon, X, Loader2, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { Textarea } from "@/components/ui/textarea";
 
 interface CreateProjectFormProps {
 	onCancel?: () => void;
@@ -33,6 +34,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
 	const router = useRouter();
 	const workspaceId = useWorkspaceId();
 	const { mutate, isPending } = useCreateProject();
+	const [isSuggesting, setIsSuggesting] = useState(false);
 
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -57,9 +59,9 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
 		mutate(
 			{ form: finalValues },
 			{
-				onSuccess: ({data}) => {
+				onSuccess: ({ data }) => {
 					form.reset();
-					router.push(`/workspaces/${workspaceId}/projects/${data.$id}`)
+					router.push(`/workspaces/${workspaceId}/projects/${data.$id}`);
 				},
 			}
 		);
@@ -69,6 +71,38 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
 		const file = e.target.files?.[0];
 		if (file) {
 			form.setValue("image", file);
+		}
+	};
+
+	const handleSuggestClick = async () => {
+		const projectName = form.getValues("name");
+		if (!projectName.trim()) {
+			form.setError("name", { message: "Please enter a project name first" });
+			return;
+		}
+
+		setIsSuggesting(true);
+		try {
+			const response = await fetch("/api/ai/suggest-project-description", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ name: projectName }),
+			});
+
+			if (!response.ok) {
+				throw new Error("Failed to get suggestions");
+			}
+
+			const data = await response.json();
+
+			if (data.description) {
+				form.setValue("description", data.description);
+			}
+		} catch (error) {
+			console.error("Error getting AI suggestions:", error);
+			// You could add a toast notification here
+		} finally {
+			setIsSuggesting(false);
 		}
 	};
 
@@ -94,6 +128,40 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
 										<FormLabel>Project name</FormLabel>
 										<FormControl>
 											<Input {...field} placeholder="Enter project name" />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="description"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Description</FormLabel>
+										<FormControl>
+											<div className="relative">
+												<Textarea
+													{...field}
+													placeholder="Enter project description (or click Suggest to get AI-generated description)"
+													className="min-h-[100px] pr-12"
+												/>
+												<Button
+													type="button"
+													variant="ghost"
+													size="sm"
+													onClick={handleSuggestClick}
+													disabled={isSuggesting || isPending}
+													title="Get AI suggestions for project description"
+													className="absolute bottom-2 right-2 h-8 w-8 p-0"
+												>
+													{isSuggesting ? (
+														<Loader2 className="h-4 w-4 animate-spin" />
+													) : (
+														<Sparkles className="h-4 w-4" />
+													)}
+												</Button>
+											</div>
 										</FormControl>
 										<FormMessage />
 									</FormItem>

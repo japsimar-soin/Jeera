@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
 	Select,
 	SelectContent,
@@ -61,7 +62,14 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
 				defaultValue={status ?? undefined}
 				onValueChange={(value) => onStatusChange(value)}
 			>
-				<SelectTrigger className="w-full lg:w-auto h-8">
+				<SelectTrigger
+					className={cn(
+						"w-full lg:w-auto h-8 border border-neutral-200 dark:border-neutral-700 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors",
+						status
+							? "text-neutral-900 dark:text-neutral-200"
+							: "text-neutral-500 dark:text-neutral-400"
+					)}
+				>
 					<div className="flex items-center pr-2">
 						<ListChecksIcon className="size-4 mr-2" />
 						<SelectValue placeholder="All statuses" />
@@ -81,7 +89,14 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
 				defaultValue={assigneeId ?? undefined}
 				onValueChange={(value) => onAssigneeChange(value)}
 			>
-				<SelectTrigger className="w-full lg:w-auto h-8">
+				<SelectTrigger
+					className={cn(
+						"w-full lg:w-auto h-8 border border-neutral-200 dark:border-neutral-700 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors",
+						assigneeId
+							? "text-neutral-900 dark:text-neutral-200"
+							: "text-neutral-500 dark:text-neutral-400"
+					)}
+				>
 					<div className="flex items-center pr-2">
 						<UserIcon className="size-4 mr-2" />
 						<SelectValue placeholder="All assignees" />
@@ -92,7 +107,7 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
 					<SelectSeparator />
 					{memberOptions?.map((member) => (
 						<SelectItem key={member.value} value={member.value}>
-							{member.label}
+							<span className="truncate max-w-60">{member.label}</span>
 						</SelectItem>
 					))}
 				</SelectContent>
@@ -102,7 +117,14 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
 					defaultValue={projectId ?? undefined}
 					onValueChange={(value) => onProjectChange(value)}
 				>
-					<SelectTrigger className="w-full lg:w-auto h-8">
+					<SelectTrigger
+						className={cn(
+							"w-full lg:w-auto h-8 border border-neutral-200 dark:border-neutral-700 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors",
+							projectId
+								? "text-neutral-900 dark:text-neutral-200"
+								: "text-neutral-500 dark:text-neutral-400"
+						)}
+					>
 						<div className="flex items-center pr-2">
 							<FolderIcon className="size-4 mr-2" />
 							<SelectValue placeholder="All projects" />
@@ -113,7 +135,7 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
 						<SelectSeparator />
 						{projectOptions?.map((project) => (
 							<SelectItem key={project.value} value={project.value}>
-								{project.label}
+								<span className="truncate max-w-60">{project.label}</span>
 							</SelectItem>
 						))}
 					</SelectContent>
