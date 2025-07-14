@@ -62,7 +62,7 @@ export const EditTaskForm = ({
 
 	const onSubmit = (values: z.infer<typeof createTaskFormSchema>) => {
 		mutate(
-			{ json: values, param: {taskId: initialValues.$id} },
+			{ json: values, param: { taskId: initialValues.$id } },
 			{
 				onSuccess: () => {
 					form.reset();
@@ -129,12 +129,14 @@ export const EditTaskForm = ({
 											<SelectContent>
 												{memberOptions.map((member) => (
 													<SelectItem key={member.id} value={member.id}>
-														<div className="flex items-center gap-x-2">
+														<div className="flex items-center gap-x-2 min-w-0">
 															<MemberAvatar
-																className="ize-6"
+																className="size-6 flex-shrink-0"
 																name={member.name}
 															/>
-															{member.name}
+															<span className="truncate max-w-48">
+																{member.name}
+															</span>
 														</div>
 													</SelectItem>
 												))}
@@ -195,13 +197,15 @@ export const EditTaskForm = ({
 											<SelectContent>
 												{projectOptions.map((project) => (
 													<SelectItem key={project.id} value={project.id}>
-														<div className="flex items-center gap-x-2">
+														<div className="flex items-center gap-x-2 min-w-0">
 															<ProjectAvatar
-																className="ize-6"
+																className="size-6 flex-shrink-0"
 																name={project.name}
 																image={project.imageUrl}
 															/>
-															{project.name}
+															<span className="truncate max-w-48">
+																{project.name}
+															</span>
 														</div>
 													</SelectItem>
 												))}

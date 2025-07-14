@@ -1,14 +1,22 @@
 .rbc-header {
-	@apply text-sm;
-	@apply font-normal;
-	@apply pb-4;
+	@apply text-xs sm:text-sm md:text-base;
+	@apply font-semibold;
+	@apply p-4;
+	@apply mb-2;
 	@apply text-muted-foreground;
-	@apply border-b-0;
+	@apply border-2;
+	@apply border-neutral-200;
+	@apply dark:border-neutral-800;
+	@apply rounded-md;
+	@apply flex;
+	@apply items-center;
+	@apply justify-center;
+	@apply h-8;
 }
 
-.rbc-header + .rbc-header {
-	@apply border-l-0;
-}
+/* .rbc-header + .rbc-header {
+	@apply border-amber-700;
+  } */
 
 .rbc-button-link {
 	@apply text-xs;
@@ -17,18 +25,23 @@
 }
 
 .rbc-month-row {
-	@apply min-h-[180px];
-	@apply border-t;
+	@apply min-h-[100px] sm:min-h-[140px] md:min-h-[180px];
 	@apply border-x;
+	@apply dark:border-x;
+	@apply dark:border-neutral-800;
 }
 
 :not(.rbc-month-row ~ .rbc-month-row).rbc-month-row {
 	@apply rounded-t-md;
+	@apply border-t;
 }
 
 .rbc-month-row:last-of-type {
 	@apply border-b;
 	@apply rounded-b-md;
+}
+.rbc-month-row:first-of-type {
+	@apply border-t;
 }
 
 .rbc-month-view {
@@ -37,12 +50,22 @@
 
 .rbc-date-cell {
 	@apply p-2;
+	@apply m-1;
 }
 
 .rbc-today {
-	/* background-color: inherit; */
+	@apply bg-white dark:bg-black;
 }
 
 .rbc-off-range-bg {
-	/* background: inherit; */
+	@apply bg-neutral-200 dark:bg-neutral-800;
+}
+
+/* Logo dark mode support */
+svg[data-logo="logo"] #logotype path {
+	fill: #111111; /* Light mode: dark text */
+}
+
+.dark svg[data-logo="logo"] #logotype path {
+	fill: #ffffff; /* Dark mode: white text */
 }

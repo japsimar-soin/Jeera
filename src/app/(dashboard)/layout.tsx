@@ -20,10 +20,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 			<EditTaskModal />
 
 			<div className="flex w-full h-full">
-				<div className="fixed left-0 top-0 hidden lg:block lg-w-[264px] h-full overflow-y-auto">
+				<div className="fixed left-0 top-0 hidden lg:block w-64 h-full overflow-y-auto">
 					<Sidebar />
 				</div>
-				<div className="lg:pl-[264px] w-full">
+				<div className="w-full lg:pl-64">
 					<div className="mx-auto max-w-screen-2xl h-full">
 						<Navbar />
 						<main className="h-full py-8 px-6 flex flex-col">{children}</main>

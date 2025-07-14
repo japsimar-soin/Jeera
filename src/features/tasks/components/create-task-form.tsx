@@ -17,6 +17,7 @@ import { DottedSeparator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCreateTask } from "../api/use-create-task";
+import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { DatePicker } from "@/components/date-picker";
@@ -30,6 +31,9 @@ import {
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { TaskStatus } from "../types";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { Loader2, Sparkles } from "lucide-react";
 
 interface CreateTaskFormProps {
 	onCancel?: () => void;
@@ -44,11 +48,14 @@ export const CreateTaskForm = ({
 }: CreateTaskFormProps) => {
 	const workspaceId = useWorkspaceId();
 	const { mutate, isPending } = useCreateTask();
+	const [isSuggesting, setIsSuggesting] = useState(false);
+	const { prefillName } = useCreateTaskModal();
 
 	const form = useForm<z.infer<typeof createTaskSchema>>({
 		resolver: zodResolver(createTaskSchema),
 		defaultValues: {
 			workspaceId,
+			name: prefillName || "",
 		},
 	});
 
@@ -62,6 +69,53 @@ export const CreateTaskForm = ({
 				},
 			}
 		);
+	};
+
+	const handleSuggestClick = async () => {
+		const taskName = form.getValues("name");
+		if (!taskName.trim()) {
+			form.setError("name", { message: "Please enter a task name first" });
+			return;
+		}
+
+		setIsSuggesting(true);
+		try {
+			const response = await fetch("/api/ai/suggest-task-details", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ name: taskName }),
+			});
+
+			if (!response.ok) {
+				throw new Error("Failed to get suggestions");
+			}
+
+			const data = await response.json();
+
+			if (data.description) {
+				form.setValue("description", data.description);
+			}
+
+			if (data.suggestedDueDate) {
+				// Convert suggested date string to actual date
+				const suggestedDate = new Date();
+				if (data.suggestedDueDate.includes("days")) {
+					const days = parseInt(data.suggestedDueDate.match(/\d+/)?.[0] || "3");
+					suggestedDate.setDate(suggestedDate.getDate() + days);
+				} else if (data.suggestedDueDate.includes("week")) {
+					const weeks = parseInt(
+						data.suggestedDueDate.match(/\d+/)?.[0] || "1"
+					);
+					suggestedDate.setDate(suggestedDate.getDate() + weeks * 7);
+				}
+				form.setValue("dueDate", suggestedDate);
+			}
+		} catch (error) {
+			console.error("Error getting AI suggestions:", error);
+			// You could add a toast notification here
+		} finally {
+			setIsSuggesting(false);
+		}
 	};
 
 	return (
@@ -84,6 +138,40 @@ export const CreateTaskForm = ({
 										<FormLabel>Task name</FormLabel>
 										<FormControl>
 											<Input {...field} placeholder="Enter task name" />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="description"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Description</FormLabel>
+										<FormControl>
+											<div className="relative">
+												<Textarea
+													{...field}
+													placeholder="Enter task description (or click Suggest to get AI-generated description)"
+													className="min-h-[100px] pr-12"
+												/>
+												<Button
+													type="button"
+													variant="ghost"
+													size="sm"
+													onClick={handleSuggestClick}
+													disabled={isSuggesting || isPending}
+													title="Get AI suggestions for description and due date"
+													className="absolute bottom-2 right-2 h-8 w-8 p-0"
+												>
+													{isSuggesting ? (
+														<Loader2 className="h-4 w-4 animate-spin" />
+													) : (
+														<Sparkles className="h-4 w-4" />
+													)}
+												</Button>
+											</div>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -121,12 +209,14 @@ export const CreateTaskForm = ({
 											<SelectContent>
 												{memberOptions.map((member) => (
 													<SelectItem key={member.id} value={member.id}>
-														<div className="flex items-center gap-x-2">
+														<div className="flex items-center gap-x-2 min-w-0">
 															<MemberAvatar
-																className="ize-6"
+																className="size-6 flex-shrink-0"
 																name={member.name}
 															/>
-															{member.name}
+															<span className="truncate max-w-32">
+																{member.name}
+															</span>
 														</div>
 													</SelectItem>
 												))}
@@ -187,13 +277,15 @@ export const CreateTaskForm = ({
 											<SelectContent>
 												{projectOptions.map((project) => (
 													<SelectItem key={project.id} value={project.id}>
-														<div className="flex items-center gap-x-2">
+														<div className="flex items-center gap-x-2 min-w-0">
 															<ProjectAvatar
-																className="ize-6"
+																className="size-6 flex-shrink-0"
 																name={project.name}
 																image={project.imageUrl}
 															/>
-															{project.name}
+															<span className="truncate max-w-32">
+																{project.name}
+															</span>
 														</div>
 													</SelectItem>
 												))}

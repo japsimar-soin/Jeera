@@ -8,6 +8,7 @@ import {
 } from "@hello-pangea/dnd";
 import { KanbanColumnHeader } from "./kanban-column-header";
 import { KanbanCard } from "./kanban-card";
+import { DottedSeparator } from "@/components/dotted-separator";
 
 const boards: TaskStatus[] = [
 	TaskStatus.BACKLOG,
@@ -157,12 +158,13 @@ export const DataKanban = ({ data, onChange }: DataKanbanProps) => {
 					return (
 						<div
 							key={board}
-							className="flex-1 mx-2 bg-muted p-1.5 rounded-md min-w-[200px]"
+							className="flex-1 mx-2 bg-white dark:bg-black p-1.5 rounded-md min-w-[200px]"
 						>
 							<KanbanColumnHeader
 								board={board}
 								taskCount={tasks[board].length}
 							/>
+							<DottedSeparator />
 							<Droppable droppableId={board}>
 								{(provided) => (
 									<div
