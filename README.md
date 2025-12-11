@@ -11,15 +11,15 @@ A sleek, full-stack task and project management platform inspired by Jira, featu
 
 ## Features
 
-- 🧠 **AI Integration** – Generate project descriptions & task suggestions
-- 📁 **Multi-Workspace Support** – Manage multiple organizations
-- 📂 **Projects & Tasks** – Full CRUD with status, assignees, due dates
-- 📊 **Multiple Views** – Kanban, Table, and Calendar
-- 👥 **Role-Based Access Control** – Admin/Member permissions
-- 🌙 **Dark/Light Theme** – Enabled both dark and light mode
-- 🔍 **Smart Filtering & Bulk Edits**
-- 📈 **Dashboard Analytics** – Visual progress and completion tracking
-- 🎨 **Responsive UI** – Mobile-optimized and theme-switching support
+- **AI Integration** – Generate project descriptions & task suggestions
+- **Multi-Workspace Support** – Manage multiple organizations
+- **Projects & Tasks** – Full CRUD with status, assignees, due dates
+- **Multiple Views** – Kanban, Table, and Calendar
+- **Role-Based Access Control** – Admin/Member permissions
+- **Dark/Light Theme** – Enabled both dark and light mode
+- **Smart Filtering & Bulk Edits**
+- **Dashboard Analytics** – Visual progress and completion tracking
+- **Responsive UI** – Mobile-optimized and theme-switching support
 
 ---
 
