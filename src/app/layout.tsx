@@ -5,6 +5,7 @@ import { QueryProvider } from "@/components/query-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { Footer } from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +30,8 @@ export default function RootLayout({
 				>
 					<QueryProvider>
 						<Toaster />
-						{children}
+						<main className="flex-1">{children}</main>
+						<Footer /> 
 					</QueryProvider>
 				</ThemeProvider>
 			</body>
