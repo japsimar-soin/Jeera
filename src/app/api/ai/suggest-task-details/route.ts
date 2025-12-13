@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
 Return only the plain task description, no extra explanation, no introductory phrases, no formatting.`;
 
 		const response = await cohere.chat({
-			model: "command-r",
+			model: "command-a-03-2025",
 			message: prompt,
 			temperature: 0.7,
 			maxTokens: 80,

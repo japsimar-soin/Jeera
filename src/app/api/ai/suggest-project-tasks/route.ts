@@ -28,7 +28,7 @@ Output:
 `;
 
 		const response = await cohere.chat({
-			model: "command-r",
+			model: "command-a-03-2025",
 			message: prompt,
 			temperature: 0.6,
 			maxTokens: 80,
