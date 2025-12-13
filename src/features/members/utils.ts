@@ -17,7 +17,5 @@ export const getMember = async ({
 		Query.equal("userId", userId),
 	]);
 
-    
-
 	return members.documents[0];
 };

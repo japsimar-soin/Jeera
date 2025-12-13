@@ -49,6 +49,7 @@ git clone https://github.com/japsimar-soin/Jeera.git
 cd jeera
 npm install  # or npm/yarn/bun
 ```
+
 ### 2. Configure Environment Variables
 
 Create a `.env.local` file in the root of your project:
@@ -105,4 +106,3 @@ src/
 - **Smart Project Description** – Enter project name, get bullet-point descriptions
 - **Auto Task Suggestions** – Create relevant tasks based on project context
 - **Auto Task Descriptions** – Generate brief task explanations using AI
-

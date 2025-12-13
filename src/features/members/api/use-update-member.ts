@@ -14,9 +14,10 @@ type RequestType = InferRequestType<
 export const useUpdateMember = () => {
 	const queryClient = useQueryClient();
 	const mutation = useMutation<ResponseType, Error, RequestType>({
-		mutationFn: async ({ param , json}) => {
+		mutationFn: async ({ param, json }) => {
 			const response = await client.api.members[":memberId"]["$patch"]({
-				param, json
+				param,
+				json,
 			});
 			if (!response.ok) {
 				throw new Error("Failed to update member");

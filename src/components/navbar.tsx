@@ -37,7 +37,7 @@ export const Navbar = () => {
 			<MobileSidebar />
 			<div className="flex items-center gap-2">
 				<ThemeToggle />
-			<UserButton />
+				<UserButton />
 			</div>
 		</nav>
 	);

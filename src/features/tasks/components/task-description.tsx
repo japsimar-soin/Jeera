@@ -69,7 +69,9 @@ export const TaskDescription = ({ task }: TaskDescriptionProps) => {
 			) : (
 				<div className="min-w-0">
 					{task.description ? (
-						<p className="whitespace-pre-wrap break-words">{task.description}</p>
+						<p className="whitespace-pre-wrap break-words">
+							{task.description}
+						</p>
 					) : (
 						<span className="text-muted-foreground">No description added</span>
 					)}

@@ -27,30 +27,22 @@ ${context}
 Output:
 `;
 
-		const response = await cohere.generate({
-			model: "command",
-			prompt,
-			maxTokens: 80,
+		const response = await cohere.chat({
+			model: "command-r",
+			message: prompt,
 			temperature: 0.6,
-			stopSequences: ["\n\n"],
+			maxTokens: 80,
 		});
 
-		const tasksText = response.generations[0]?.text?.trim() || "";
+		const tasksText = response.text?.trim() || "";
 
 		// Parse the tasks into an array
 		const taskNames = tasksText
 			.split("\n")
-			.map((line) =>
-				line
-					.replace(/^[-•*]\s*/, "") // Remove bullet points
-					.replace(/^\d+\.\s*/, "") // Remove numbering (1., 2., etc.)
-					.replace(/^\d+\)\s*/, "") // Remove numbering (1), 2), etc.)
-					.trim()
-			)
-			.filter((name) => name.length > 0) // Remove empty lines
-			.slice(0, 4); // Limit to 4 tasks
+			.map((line) => line.trim())
+			.filter(Boolean)
+			.slice(0, 4);
 
-		// Convert to task objects
 		const tasks = taskNames.map((name) => ({
 			name,
 			description: `Task related to ${projectName}`,
@@ -64,4 +56,3 @@ Output:
 		);
 	}
 }
- 

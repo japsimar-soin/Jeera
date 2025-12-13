@@ -36,8 +36,8 @@ export const KanbanColumnHeader = ({
 	board,
 	taskCount,
 }: KanbanColumnHeaderProps) => {
-	const {open} = useCreateTaskModal();
-    
+	const { open } = useCreateTaskModal();
+
 	const icon = statusIconMap[board];
 
 	return (
@@ -49,7 +49,12 @@ export const KanbanColumnHeader = ({
 					{taskCount}
 				</div>
 			</div>
-			<Button onClick={() => open()} variant="ghost" size="icon" className="size-5 border-0 hover:bg-transparent">
+			<Button
+				onClick={() => open()}
+				variant="ghost"
+				size="icon"
+				className="size-5 border-0 hover:bg-transparent"
+			>
 				<PlusIcon className="size-4 text-neutral-500" />
 			</Button>
 		</div>

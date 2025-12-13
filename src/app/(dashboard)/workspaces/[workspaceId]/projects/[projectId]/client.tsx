@@ -44,7 +44,12 @@ export const ProjectIdClient = () => {
 					</p>
 				</div>
 				<div className="flex-shrink-0">
-					<Button variant="secondary" className="dark:bg-black dark:border" size="sm" asChild>
+					<Button
+						variant="secondary"
+						className="dark:bg-black dark:border"
+						size="sm"
+						asChild
+					>
 						<Link
 							href={`/workspaces/${project.workspaceId}/projects/${project.$id}/settings`}
 						>

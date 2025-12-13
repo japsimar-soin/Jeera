@@ -3,8 +3,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { InferRequestType, InferResponseType } from "hono";
 import { client } from "@/lib/rpc";
 
-type ResponseType = InferResponseType<(typeof client.api.tasks)[":taskId"]["$delete"], 200>;
-type RequestType = InferRequestType<(typeof client.api.tasks)[":taskId"]["$delete"]>;
+type ResponseType = InferResponseType<
+	(typeof client.api.tasks)[":taskId"]["$delete"],
+	200
+>;
+type RequestType = InferRequestType<
+	(typeof client.api.tasks)[":taskId"]["$delete"]
+>;
 
 export const useDeleteTask = () => {
 	const queryClient = useQueryClient();
@@ -16,7 +21,7 @@ export const useDeleteTask = () => {
 			}
 			return await response.json();
 		},
-		onSuccess: ({data}) => {
+		onSuccess: ({ data }) => {
 			toast.success("Task deleted");
 			queryClient.invalidateQueries({ queryKey: ["project-analytics"] });
 			queryClient.invalidateQueries({ queryKey: ["workspace-analytics"] });

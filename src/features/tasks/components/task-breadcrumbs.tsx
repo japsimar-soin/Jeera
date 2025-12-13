@@ -45,7 +45,7 @@ export const TaskBreadcrumbs = ({ project, task }: TaskBreadcrumbsProps) => {
 
 	return (
 		<div className="flex items-center gap-x-2">
-            <ConfirmDialog />
+			<ConfirmDialog />
 			<ProjectAvatar
 				name={project.name}
 				image={project.imageUrl}
@@ -57,7 +57,9 @@ export const TaskBreadcrumbs = ({ project, task }: TaskBreadcrumbsProps) => {
 				</p>
 			</Link>
 			<ChevronRightIcon className="size-4 lg:size-5 text-muted-foreground flex-shrink-0" />
-			<p className="text-sm lg:text-lg font-semibold truncate max-w-64">{task.name}</p>
+			<p className="text-sm lg:text-lg font-semibold truncate max-w-64">
+				{task.name}
+			</p>
 			<Button
 				onClick={handleDeleteTask}
 				disabled={isPending}

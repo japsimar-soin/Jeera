@@ -53,7 +53,11 @@ export const EventCard = ({
 				<div className="flex items-center gap-x-1">
 					<MemberAvatar name={assignee?.name} className="hidden sm:block" />
 					<div className="size-1 rounded-full bg-neutral-300 dark:bg-neutral-600" />
-					<ProjectAvatar name={project?.name} image={project.imageUrl} className="hidden sm:block" />
+					<ProjectAvatar
+						name={project?.name}
+						image={project.imageUrl}
+						className="hidden sm:block"
+					/>
 				</div>
 			</div>
 		</div>

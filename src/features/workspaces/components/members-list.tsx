@@ -79,8 +79,12 @@ export const MembersList = () => {
 								name={member.name}
 							/>
 							<div className="flex flex-col min-w-0 flex-1">
-								<p className="text-sm font-medium truncate max-w-60">{member.name}</p>
-								<p className="text-xs text-muted-foreground truncate max-w-60">{member.email}</p>
+								<p className="text-sm font-medium truncate max-w-60">
+									{member.name}
+								</p>
+								<p className="text-xs text-muted-foreground truncate max-w-60">
+									{member.email}
+								</p>
 							</div>
 							<DropdownMenu>
 								<DropdownMenuTrigger asChild>

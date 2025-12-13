@@ -17,7 +17,7 @@ export const TaskDate = ({ value, className }: TaskDateProps) => {
 		textColor = "text-red-600";
 	} else if (diffInDays <= 7) {
 		textColor = "text-yellow-500";
-	} 
+	}
 	return (
 		<div className={textColor}>
 			<span className={cn("truncate", className)}>{format(value, "PPP")}</span>

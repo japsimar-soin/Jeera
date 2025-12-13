@@ -47,7 +47,7 @@ export const sessionMiddleware = createMiddleware<AdditionalContext>(
 		c.set("databases", databases);
 		c.set("storage", storage);
 		c.set("user", user);
-		
+
 		await next();
 	}
 );
