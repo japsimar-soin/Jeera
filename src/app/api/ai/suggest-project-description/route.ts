@@ -21,16 +21,14 @@ Project: ${name}
 Output:
 -`;
 
-		const response = await cohere.generate({
-			model: "command",
-			prompt,
-			maxTokens: 150,
+		const response = await cohere.chat({
+			model: "command-a-03-2025",
+			message: prompt,
 			temperature: 0.6,
-			stopSequences: ["\n\n"], // stops when a section ends
+			maxTokens: 150,
 		});
 
-		let description = response.generations[0]?.text?.trim() || "";
-
+		let description = response.text?.trim() || "";
 		// Optional: further strip if you still find some junk at start
 		description = description.replace(/^(?:[-•])?\s*/, "");
 

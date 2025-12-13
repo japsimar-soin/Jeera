@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Logo } from "@/components/logo";
 
 interface AuthLayoutProps {
 	children: React.ReactNode;
@@ -18,7 +18,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
 		<main className="bg-neutral-100 dark:bg-neutral-900 min-h-screen">
 			<div className="mx-auto max-w-screen-2xl p-4">
 				<nav className="flex justify-between items-center">
-					<Image src="/logo.svg" alt="logo" width={157} height={68} />
+				<Logo />
 					<div className="flex items-center gap-2">
 						<ThemeToggle />
 					<Button asChild variant="secondary">
